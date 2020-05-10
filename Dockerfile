@@ -57,6 +57,7 @@ RUN set -ex \
     && update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 \
     && useradd -ms /bin/bash -d ${AIRFLOW_USER_HOME} airflow \
     && pip install -U pip setuptools wheel \
+    && pip install pytest \
     && pip install pytz \
     && pip install pyOpenSSL \
     && pip install ndg-httpsclient \
@@ -77,8 +78,9 @@ RUN set -ex \
 
 COPY script/entrypoint.sh /entrypoint.sh
 COPY config/airflow.cfg ${AIRFLOW_USER_HOME}/airflow.cfg
+COPY config/unittests.cfg ${AIRFLOW_USER_HOME}/unittests.cfg
 COPY dags/ ${AIRFLOW_USER_HOME}/dags
-COPY unittests/unittests.cfg ${AIRFLOW_USER_HOME}/unittests.cfg
+COPY unittests/ ${AIRFLOW_USER_HOME}/unittests
 
 RUN chown -R airflow: ${AIRFLOW_USER_HOME}
 
