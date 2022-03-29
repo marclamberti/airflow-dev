@@ -199,7 +199,7 @@ pandas-gbq==0.13.1
 pandas==0.25.3
 papermill==2.1.0
 parameterized==0.7.1
-paramiko==2.7.1
+paramiko==2.10.1
 parso==0.6.2
 pathspec==0.8.0
 pbr==5.4.5
